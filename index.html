@@ -1,0 +1,97 @@
+<!--
+ the web image should be interactive
+1. when we click on the turn lane it should zoom into that location and a pop up should apear showing the turn lane marked at that location.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2Fpa2lhLWFiaGlzaGVrOCIsImEiOiJjaWtxbnF5MG8wMHVidTdra2J5MXJyMWVvIn0.yPOouitYbzDGHY1BpBZ0GQ';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/saikia-abhishek8/cilawkp6300chc4lxq7i1deqr', //stylesheet location
+    center: [-118.24, 34.01 ], // starting position
+    zoom: 11 // starting zoom
+});
+
+map.on('click', function (e) {
+	var test = "turn"+"&#58;"+"lanes";
+    // Use featuresAt to get features within a given radius of the click event
+    // Use layer option to avoid getting results from other layers
+    map.featuresAt(e.point, {layer: 'Turn lanes LA', radius: 10, includeGeometry: true}, function (err, features) {
+    	console.log(features[0].properties.test);
+        if (err) throw err;
+        // if there are features within the given radius of the click event,
+        // fly to the location of the click event
+        if (features.length) {
+            // Get coordinates from the symbol and center the map on those coordinates
+            map.flyTo({center: features[0].geometry.coordinates[0]});
+
+            //chek if turn lanes tag is present. 
+            //if this si present just display trn lanes name an turn lanes property
+            if (features[0].properties["turn:lanes:forward"])
+
+            {
+            	if (features[0].properties["turn:lanes:backward"]) {
+            	 var popupHTML = '<p>'+"Turn lanes forward:"+features[0].properties["turn:lanes:forward"]+ '</br>'+
+                                  "Turn lanes backward:" + features[0].properties["turn:lanes:backward"]+
+                                  '</p>';
+                                  }
+                 else
+                 {
+                 	 var popupHTML = '<p>'+"Turn lanes forward:"+features[0].properties["turn:lanes:forward"]+
+                                  
+                                  '</p>';
+                 }
+
+            }
+            else if (features[0].properties["turn:lanes:backward"])
+
+            {
+            	// if (features[0].properties["turn:lanes:forward"]) {
+            	//  var popupHTML = '<p>'+"Turn lanes forward:"+features[0].properties["turn:lanes:forward"]+ '</br>'+
+             //                      "Turn lanes backward:" + features[0].properties["turn:lanes:backward"]+
+             //                      '</p>';
+             //                      }
+                 // else
+                 // {
+                 	 var popupHTML = '<p>'+"Turn lanes backward:"+features[0].properties["turn:lanes:backward"]+
+                                  
+                                  '</p>';
+                 // }
+
+            }
+            else 
+            {
+                  var popupHTML = '<p>'+"Turn lanes:"+features[0].properties["turn:lanes"]+
+                                  
+                                  '</p>';
+            }
+           
+           
+
+					var popup = new mapboxgl.Popup()
+								.setLngLat(features[0].geometry.coordinates[0])
+								.setHTML(popupHTML)
+								.addTo(map);
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
