@@ -32,7 +32,7 @@ map.on('click', function (e) {
     // Use featuresAt to get features within a given radius of the click event
     // Use layer option to avoid getting results from other layers
     map.featuresAt(e.point, {layer: 'la-turnlanes', radius: 10, includeGeometry: true}, function (err, features) {
-    	console.log(features[0].properties.test);
+    	
         if (err) throw err;
         // if there are features within the given radius of the click event,
         // fly to the location of the click event
@@ -52,14 +52,13 @@ map.on('click', function (e) {
 
             {
             	if (features[0].properties["turn:lanes:backward"]) {
-            	 var popupHTML = '<p><b>Turn lanes forward : </b>'+features[0].properties["turn:lanes:forward"]+ '</br><b>Turn lanes backward : </b>'+ features[0].properties["turn:lanes:backward"]+ '</br><b>Contributor : </b>'+ features[0].properties.user+
-                                  '</p>';
+            	 var popupHTML = '<p><b>Turn lanes forward : </b>'+features[0].properties["turn:lanes:forward"]+ '</br><b>Turn lanes backward : </b>'+ features[0].properties["turn:lanes:backward"]+ '</br><b>Contributor : </b><a href="http://www.openstreetmap.org/user/' + features[0].properties.user +'">' +features[0].properties.user+'</a></p>';
                                   }
                  else
                  {
-                 	 var popupHTML = '<p><b>Turn lanes forward : </b>'+features[0].properties["turn:lanes:forward"]+ '</br><b>Contributor : </b>' + features[0].properties.user+
-                                  
-                                  '</p>';
+                 	 var popupHTML = '<p><b>Turn lanes forward : </b>'+features[0].properties["turn:lanes:forward"]+ '</br><b>Contributor : </b><a href="http://www.openstreetmap.org/user/' + features[0].properties.user +'">' +features[0].properties.user+'</a></p>';
+
+
                  }
 
             }
@@ -73,17 +72,13 @@ map.on('click', function (e) {
              //                      }
                  // else
                  // {
-                 	 var popupHTML = '<p><b>Turn lanes backward : </b>'+features[0].properties["turn:lanes:backward"]+ '</br><b>Contributor : </b>' + features[0].properties.user+
-                                  
-                                  '</p>';
+                 	 var popupHTML = '<p><b>Turn lanes backward : </b>'+features[0].properties["turn:lanes:backward"]+ '</br><b>Contributor : </b><a href="http://www.openstreetmap.org/user/' + features[0].properties.user +'">' +features[0].properties.user+'</a></p>';
                  // }
 
             }
             else 
             {
-                  var popupHTML = '<p><b>Turn lanes : </b>'+features[0].properties["turn:lanes"]+ '</br><b>Contributor : </b>' + features[0].properties.user+
-                                  
-                                  '</p>';
+                  var popupHTML = '<p><b>Turn lanes : </b>'+features[0].properties["turn:lanes"]+ '</br><b>Contributor : </b><a href="http://www.openstreetmap.org/user/' + features[0].properties.user +'">' +features[0].properties.user+'</a></p>';
             }
            
            
