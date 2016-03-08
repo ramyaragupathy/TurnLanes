@@ -47,18 +47,18 @@ map.on('click', function (e) {
             });
 
             //chek if turn lanes tag is present. 
-            //if this si present just display trn lanes name an turn lanes property
+            //if this is present just display trn lanes name an turn lanes property
             if (features[0].properties["turn:lanes:forward"])
 
             {
             	if (features[0].properties["turn:lanes:backward"]) {
             	 var popupHTML = '<p>'+"Turn lanes forward:"+features[0].properties["turn:lanes:forward"]+ '</br>'+
-                                  "Turn lanes backward:" + features[0].properties["turn:lanes:backward"]+
+                                  "Turn lanes backward:" + features[0].properties["turn:lanes:backward"]+ '</br>'+"Contributor:" + features[0].properties.user+
                                   '</p>';
                                   }
                  else
                  {
-                 	 var popupHTML = '<p>'+"Turn lanes forward:"+features[0].properties["turn:lanes:forward"]+
+                 	 var popupHTML = '<p>'+"Turn lanes forward:"+features[0].properties["turn:lanes:forward"]+ '</br>'+"Contributor:" + features[0].properties.user+
                                   
                                   '</p>';
                  }
@@ -74,7 +74,7 @@ map.on('click', function (e) {
              //                      }
                  // else
                  // {
-                 	 var popupHTML = '<p>'+"Turn lanes backward:"+features[0].properties["turn:lanes:backward"]+
+                 	 var popupHTML = '<p>'+"Turn lanes backward:"+features[0].properties["turn:lanes:backward"]+ '</br>'+"Contributor:" + features[0].properties.user+
                                   
                                   '</p>';
                  // }
@@ -82,7 +82,7 @@ map.on('click', function (e) {
             }
             else 
             {
-                  var popupHTML = '<p>'+"Turn lanes:"+features[0].properties["turn:lanes"]+
+                  var popupHTML = '<p>'+"Turn lanes:"+features[0].properties["turn:lanes"]+ '</br>'+"Contributor:" + features[0].properties.user+
                                   
                                   '</p>';
             }
