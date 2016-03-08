@@ -42,7 +42,7 @@ map.on('click', function (e) {
               center: features[0].geometry.coordinates[0],
               zoom: 14,
               bearing: 0,
-              speed: 2, // make the flying slow
+              speed: 1.5, // make the flying slow
               curve: 1
             });
 
@@ -52,13 +52,12 @@ map.on('click', function (e) {
 
             {
             	if (features[0].properties["turn:lanes:backward"]) {
-            	 var popupHTML = '<p>'+"<b>Turn lanes forward : </b>"+features[0].properties["turn:lanes:forward"]+ '</br>'+
-                                  "<b>Turn lanes backward : </b>" + features[0].properties["turn:lanes:backward"]+ '</br>'+"<b>Contributor : </b>" + features[0].properties.user+
+            	 var popupHTML = '<p><b>Turn lanes forward : </b>'+features[0].properties["turn:lanes:forward"]+ '</br><b>Turn lanes backward : </b>'+ features[0].properties["turn:lanes:backward"]+ '</br><b>Contributor : </b>'+ features[0].properties.user+
                                   '</p>';
                                   }
                  else
                  {
-                 	 var popupHTML = '<p>'+"<b>Turn lanes forward : </b>"+features[0].properties["turn:lanes:forward"]+ '</br>'+"<b>Contributor : </b>" + features[0].properties.user+
+                 	 var popupHTML = '<p><b>Turn lanes forward : </b>'+features[0].properties["turn:lanes:forward"]+ '</br><b>Contributor : </b>' + features[0].properties.user+
                                   
                                   '</p>';
                  }
@@ -74,7 +73,7 @@ map.on('click', function (e) {
              //                      }
                  // else
                  // {
-                 	 var popupHTML = '<p>'+"<b>Turn lanes backward : </b>"+features[0].properties["turn:lanes:backward"]+ '</br>'+"<b>Contributor : </b>" + features[0].properties.user+
+                 	 var popupHTML = '<p><b>Turn lanes backward : </b>'+features[0].properties["turn:lanes:backward"]+ '</br><b>Contributor : </b>' + features[0].properties.user+
                                   
                                   '</p>';
                  // }
@@ -82,7 +81,7 @@ map.on('click', function (e) {
             }
             else 
             {
-                  var popupHTML = '<p>'+"<b>Turn lanes : </b>"+features[0].properties["turn:lanes"]+ '</br>'+"<b>Contributor : </b>" + features[0].properties.user+
+                  var popupHTML = '<p><b>Turn lanes : </b>'+features[0].properties["turn:lanes"]+ '</br><b>Contributor : </b>' + features[0].properties.user+
                                   
                                   '</p>';
             }
