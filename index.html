@@ -19,26 +19,32 @@
 
 <div id='map'></div>
 <script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2Fpa2lhLWFiaGlzaGVrOCIsImEiOiJjaWtxbnF5MG8wMHVidTdra2J5MXJyMWVvIn0.yPOouitYbzDGHY1BpBZ0GQ';
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/saikia-abhishek8/cilawkp6300chc4lxq7i1deqr', //stylesheet location
+    style: 'mapbox://styles/jothirnadh/cilj37qx7000zazkrr2uz9hr3', //stylesheet location
     center: [-118.24, 34.01 ], // starting position
-    zoom: 11 // starting zoom
+    zoom: 10 // starting zoom
 });
 
 map.on('click', function (e) {
 	var test = "turn"+"&#58;"+"lanes";
     // Use featuresAt to get features within a given radius of the click event
     // Use layer option to avoid getting results from other layers
-    map.featuresAt(e.point, {layer: 'Turn lanes LA', radius: 10, includeGeometry: true}, function (err, features) {
+    map.featuresAt(e.point, {layer: 'la-turnlanes', radius: 10, includeGeometry: true}, function (err, features) {
     	console.log(features[0].properties.test);
         if (err) throw err;
         // if there are features within the given radius of the click event,
         // fly to the location of the click event
         if (features.length) {
             // Get coordinates from the symbol and center the map on those coordinates
-            map.flyTo({center: features[0].geometry.coordinates[0]});
+            map.flyTo({
+              center: features[0].geometry.coordinates[0],
+              zoom: 14,
+              bearing: 0,
+              speed: 2, // make the flying slow
+              curve: 1
+            });
 
             //chek if turn lanes tag is present. 
             //if this si present just display trn lanes name an turn lanes property
