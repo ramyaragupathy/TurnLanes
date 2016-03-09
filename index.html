@@ -20,12 +20,19 @@
 <div id='map'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
+
+var sw = new mapboxgl.LngLat(-119.0286, 33.3374);
+var ne = new mapboxgl.LngLat(-116.9577, 34.4817);
+var llb = new mapboxgl.LngLatBounds(sw, ne);
 var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/jothirnadh/cilj37qx7000zazkrr2uz9hr3', //stylesheet location
-    center: [-118.24, 34.01 ], // starting position
-    zoom: 10 // starting zoom
+    container: 'map', 
+    style: 'mapbox://styles/jothirnadh/cilj37qx7000zazkrr2uz9hr3', 
+    center: [-118.1710,34.0259],
+    maxBounds: llb,
+    zoom: 10 
 });
+
+
 
 map.on('click', function (e) {
 	var test = "turn"+"&#58;"+"lanes";
